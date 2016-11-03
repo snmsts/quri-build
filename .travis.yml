@@ -15,6 +15,11 @@ env:
     - LISP=allegro
     - LISP=cmucl
 
+addons:
+  apt:
+    packages:
+      - libc6-i386
+
 install:
   - sudo apt-get -qq update --force-yes > /dev/null
   - curl -L https://raw.githubusercontent.com/roswell/roswell/$ROSWELL_BRANCH/scripts/install-for-ci.sh | sh
