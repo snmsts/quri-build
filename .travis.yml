@@ -1,0 +1,23 @@
+language: common-lisp
+sudo: required
+
+env:
+  global:
+   - PATH=~/.roswell/bin:$PATH
+   - ROSWELL_BRANCH=master
+   - ROSWELL_INSTALL_DIR=$HOME/.roswell
+  matrix:
+    - LISP=sbcl-bin
+    - LISP=ccl-bin
+    - LISP=abcl
+    - LISP=clisp
+    - LISP=ecl
+    - LISP=allegro
+    - LISP=cmucl
+
+install:
+  - curl -L https://raw.githubusercontent.com/roswell/roswell/$ROSWELL_BRANCH/scripts/install-for-ci.sh | sh
+  - ros install prove fukamachi/quri
+
+script:
+  - run-prove ~/.roswell/local-projects/fukamachi/quri/quri-test.asd
